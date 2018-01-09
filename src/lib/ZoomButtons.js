@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import { path as d3Path } from "d3-path";
 import { interpolateNumber } from "d3-interpolate";
 
-import { last, noop } from "./utils";
+import { last, noop, functor } from "./utils";
 
 class ZoomButtons extends Component {
 	constructor(props) {
@@ -56,8 +56,9 @@ class ZoomButtons extends Component {
 		const { size, heightFromBase, rx, ry } = this.props;
 		const { stroke, strokeOpacity, fill, strokeWidth, fillOpacity } = this.props;
 		const { textFill, textStrokeWidth } = this.props;
-		const { onReset } = this.props;
-		const centerX = Math.round(width / 2);
+                const { onReset } = this.props;
+                const { vertical } = this.props;
+		const centerX = functor(this.props.centerX)(w)
 		const y = height - heightFromBase;
 
 		const [w, h] = size;
@@ -67,28 +68,33 @@ class ZoomButtons extends Component {
 		const textY = Math.round(y + h / 2);
 
 		const resetX = centerX;
+                const resetY = y;
 
 		const zoomOut = d3Path();
-		const zoomOutX = centerX - w - 2 * strokeWidth;
-		zoomOut.moveTo(zoomOutX - wLength, textY);
-		zoomOut.lineTo(zoomOutX + wLength, textY);
+		const zoomOutX = vertical ? centerX : centerX - w - 2 * strokeWidth;
+                const zoomOutY = vertical ? y + h : y
+                const zoomOutTextY = zoomOutY + h / 2
+                zoomOut.moveTo(zoomOutX - wLength, zoomOutTextY);
+                zoomOut.lineTo(zoomOutX + wLength, zoomOutTextY);
 		zoomOut.closePath();
 
 		const zoomIn = d3Path();
-		const zoomInX = centerX + w + 2 * strokeWidth;
+		const zoomInX = vertical ? centerX : centerX + w + 2 * strokeWidth;
+                const zoomInY = vertical ? y - h : y
+                const zoomInTextY = zoomInY + h / 2
 
-		zoomIn.moveTo(zoomInX - wLength, textY);
-		zoomIn.lineTo(zoomInX + wLength, textY);
+		zoomIn.moveTo(zoomInX - wLength, zoomInTextY);
+		zoomIn.lineTo(zoomInX + wLength, zoomInTextY);
 
-		zoomIn.moveTo(zoomInX, textY - hLength);
-		zoomIn.lineTo(zoomInX, textY + hLength);
+		zoomIn.moveTo(zoomInX, zoomInTextY - hLength);
+		zoomIn.lineTo(zoomInX, zoomInTextY + hLength);
 		// zoomIn.closePath();
 
 		return (
 			<g className="react-stockcharts-zoom-button">
 				<rect
 					x={zoomOutX - w / 2}
-					y={y}
+					y={zoomOutY}
 					rx={rx}
 					ry={ry}
 					height={h}
@@ -105,7 +111,7 @@ class ZoomButtons extends Component {
 				/>
 				<rect
 					x={resetX - w / 2}
-					y={y}
+					y={resetY}
 					rx={rx}
 					ry={ry}
 					height={h}
@@ -116,14 +122,14 @@ class ZoomButtons extends Component {
 					strokeOpacity={strokeOpacity}
 					strokeWidth={strokeWidth}
 				/>
-				<g transform={`translate (${resetX}, ${y + h / 4}) scale(.14)`}>
+				<g transform={`translate (${resetX}, ${resetY + h / 4}) scale(.14)`}>
 					<path d="M31 13C23.4 5.3 12.8.5 1.1.5c-23.3 0-42.3 19-42.3 42.5s18.9 42.5 42.3 42.5c13.8 0 26-6.6 33.7-16.9l-16.5-1.8C13.5 70.4 7.5 72.5 1 72.5c-16.2 0-29.3-13.2-29.3-29.4S-15.2 13.7 1 13.7c8.1 0 15.4 3.3 20.7 8.6l-10.9 11h32.5V.5L31 13z"
 						fill={textFill}
 					/>
 				</g>
 				<rect
 					x={zoomInX - w / 2}
-					y={y}
+					y={zoomInY}
 					rx={rx}
 					ry={ry}
 					height={h}
@@ -141,7 +147,7 @@ class ZoomButtons extends Component {
 				<rect className="react-stockcharts-enable-interaction out"
 					onClick={this.handleZoomOut}
 					x={zoomOutX - w / 2}
-					y={y}
+					y={zoomOutY}
 					rx={rx}
 					ry={ry}
 					height={h}
@@ -151,7 +157,7 @@ class ZoomButtons extends Component {
 				<rect className="react-stockcharts-enable-interaction reset"
 					onClick={onReset}
 					x={resetX - w / 2}
-					y={y}
+                                        y={resetY}
 					rx={rx}
 					ry={ry}
 					height={h}
@@ -161,7 +167,7 @@ class ZoomButtons extends Component {
 				<rect className="react-stockcharts-enable-interaction in"
 					onClick={this.handleZoomIn}
 					x={zoomInX - w / 2}
-					y={y}
+					y={zoomInY}
 					rx={rx}
 					ry={ry}
 					height={h}
@@ -177,6 +183,11 @@ ZoomButtons.propTypes = {
 	zoomMultiplier: PropTypes.number.isRequired,
 	size: PropTypes.array.isRequired,
 	heightFromBase: PropTypes.number.isRequired,
+        centerX: PropTypes.oneOfType([
+          PropTypes.number,
+          PropTypes.func,
+        ]).isRequired,
+        vertical: PropTypes.bool,
 	rx: PropTypes.number.isRequired,
 	ry: PropTypes.number.isRequired,
 	stroke: PropTypes.string.isRequired,
@@ -194,6 +205,7 @@ ZoomButtons.propTypes = {
 ZoomButtons.defaultProps = {
 	size: [30, 24],
 	heightFromBase: 50,
+        centerX: (w) => Math.round(w / 2),
 	rx: 3,
 	ry: 3,
 	stroke: "#000000",
