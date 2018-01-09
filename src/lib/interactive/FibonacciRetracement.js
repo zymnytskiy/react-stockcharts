@@ -158,6 +158,7 @@ class FibonacciRetracement extends Component {
 	render() {
 		const { current, override } = this.state;
 		const { retracements } = this.props;
+                const { onClick } = this.props;
 
 		const {
 			appearance,
@@ -201,6 +202,7 @@ class FibonacciRetracement extends Component {
 							appearance={eachAppearance}
 							onDrag={this.handleDrag}
 							onDragComplete={this.handleDragComplete}
+                                                        onClick={onClick && (() => onClick(each, idx))}
 						/>
 					);
 				})}
@@ -230,6 +232,7 @@ FibonacciRetracement.propTypes = {
 	onStart: PropTypes.func,
 	onComplete: PropTypes.func,
 	onSelect: PropTypes.func,
+	onClick: PropTypes.func,
 
 	type: PropTypes.oneOf([
 		"EXTEND", // extends from -Infinity to +Infinity

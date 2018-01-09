@@ -150,6 +150,7 @@ class EachTrendLine extends Component {
 			selected,
 
 			onDragComplete,
+                        onClick,
 		} = this.props;
 		const { hover, anchor } = this.state;
 
@@ -172,6 +173,7 @@ class EachTrendLine extends Component {
 				strokeOpacity={strokeOpacity}
 				strokeDasharray={strokeDasharray}
 				interactiveCursorClass={lineInteractiveCursor}
+                                onClick={onClick}
 				onDragStart={this.handleLineDragStart}
 				onDrag={this.handleLineDrag}
 				onDragComplete={onDragComplete} />
@@ -243,6 +245,7 @@ EachTrendLine.propTypes = {
 	onDragComplete: PropTypes.func.isRequired,
 	onSelect: PropTypes.func.isRequired,
 	onUnSelect: PropTypes.func.isRequired,
+	onClick: PropTypes.func,
 
 	r: PropTypes.number.isRequired,
 	strokeOpacity: PropTypes.number.isRequired,

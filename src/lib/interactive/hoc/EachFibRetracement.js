@@ -224,6 +224,7 @@ class EachFibRetracement extends Component {
 						onDragStart={this.handleLineDragStart}
 						onDrag={dragHandler}
 						onDragComplete={onDragComplete}
+                                                onClick={this.props.onClick}
 					/>
 					<Text
 						selected={selected}
@@ -310,6 +311,7 @@ EachFibRetracement.propTypes = {
 	index: PropTypes.number,
 	onDrag: PropTypes.func.isRequired,
 	onDragComplete: PropTypes.func.isRequired,
+	onClick: PropTypes.func,
 };
 
 EachFibRetracement.defaultProps = {

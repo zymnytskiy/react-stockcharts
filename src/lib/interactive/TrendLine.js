@@ -129,6 +129,7 @@ class TrendLine extends Component {
 		const { currentPositionRadius, currentPositionStroke } = this.props;
 		const { currentPositionstrokeOpacity, currentPositionStrokeWidth } = this.props;
 		const { hoverText, trends } = this.props;
+                const { onClick } = this.props
 		const { current, override } = this.state;
 
 		const tempLine = isDefined(current) && isDefined(current.end)
@@ -169,6 +170,7 @@ class TrendLine extends Component {
 					hoverText={hoverText}
 					onDrag={this.handleDragLine}
 					onDragComplete={this.handleDragLineComplete}
+                                        onClick={onClick && (() => onClick(each, idx))}
 					edgeInteractiveCursor="react-stockcharts-move-cursor"
 					lineInteractiveCursor="react-stockcharts-move-cursor"
 				/>;
@@ -201,6 +203,7 @@ TrendLine.propTypes = {
 	onStart: PropTypes.func.isRequired,
 	onComplete: PropTypes.func.isRequired,
 	onSelect: PropTypes.func,
+	onClick: PropTypes.func,
 
 	currentPositionStroke: PropTypes.string,
 	currentPositionStrokeWidth: PropTypes.number,
