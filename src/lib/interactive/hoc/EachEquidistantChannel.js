@@ -190,6 +190,7 @@ class EachEquidistantChannel extends Component {
 		} = appearance;
 		const { selected } = this.props;
 		const { onDragComplete } = this.props;
+                const { onClick } = this.props
 		const { hover } = this.state;
 		const { enable: hoverTextEnabled, ...restHoverTextProps } = hoverText;
 
@@ -254,6 +255,7 @@ class EachEquidistantChannel extends Component {
 				onDragStart={this.handleDragStart}
 				onDrag={this.handleChannelDrag}
 				onDragComplete={onDragComplete}
+                                onClick={onClick}
 			/>
 			{line1Edge}
 			{line2Edge}
@@ -289,6 +291,7 @@ EachEquidistantChannel.propTypes = {
 	index: PropTypes.number,
 	onDrag: PropTypes.func.isRequired,
 	onDragComplete: PropTypes.func.isRequired,
+	onClick: PropTypes.func,
 };
 
 EachEquidistantChannel.defaultProps = {

@@ -87,6 +87,7 @@ class EachLinearRegressionChannel extends Component {
 			edgeStroke,
 		} = appearance;
 		const { hover } = this.state;
+                const { onClick } = this.props;
 
 		const hoverHandler = interactive
 			? { onHover: this.handleHover, onUnHover: this.handleHover }
@@ -100,6 +101,7 @@ class EachLinearRegressionChannel extends Component {
 				selected={selected || hover}
 				{...hoverHandler}
 
+                                onClick={onClick}
 				x1Value={x1Value}
 				x2Value={x2Value}
 				fill={fill}
@@ -169,6 +171,7 @@ EachLinearRegressionChannel.propTypes = {
 	edgeInteractiveCursor: PropTypes.string,
 	onDrag: PropTypes.func.isRequired,
 	onDragComplete: PropTypes.func.isRequired,
+	onClick: PropTypes.func,
 	snapTo: PropTypes.func,
 	interactive: PropTypes.bool.isRequired,
 	selected: PropTypes.bool.isRequired,

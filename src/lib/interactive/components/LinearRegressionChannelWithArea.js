@@ -111,6 +111,7 @@ class LinearRegressionChannelWithArea extends Component {
 	render() {
 		const { selected, interactiveCursorClass } = this.props;
 		const { onHover, onUnHover } = this.props;
+                const { onClick } = this.props
 
 		return <GenericChartComponent
 			isHover={this.isHover}
@@ -124,6 +125,7 @@ class LinearRegressionChannelWithArea extends Component {
 
 			onHover={onHover}
 			onUnHover={onUnHover}
+                        onClickWhenHover={onClick}
 
 			drawOn={["mousemove", "mouseleave", "pan", "drag"]}
 		/>;
@@ -221,6 +223,7 @@ LinearRegressionChannelWithArea.propTypes = {
 
 	onHover: PropTypes.func,
 	onUnHover: PropTypes.func,
+        onClick: PropTypes.func,
 
 	defaultClassName: PropTypes.string,
 
