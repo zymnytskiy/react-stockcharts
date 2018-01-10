@@ -85,6 +85,7 @@ class EachText extends Component {
 			hoverText,
 			selected,
 			onDragComplete,
+                        onClick,
 		} = this.props;
 		const { hover } = this.state;
 
@@ -105,6 +106,7 @@ class EachText extends Component {
 				onDragStart={this.handleDragStart}
 				onDrag={this.handleDrag}
 				onDragComplete={onDragComplete}
+                                onClick={onClick}
 
 				position={position}
 				bgFill={bgFill}
@@ -151,6 +153,7 @@ EachText.propTypes = {
 
 	onDrag: PropTypes.func.isRequired,
 	onDragComplete: PropTypes.func.isRequired,
+	onClick: PropTypes.func,
 
 	hoverText: PropTypes.object.isRequired,
 };
