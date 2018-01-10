@@ -189,6 +189,7 @@ class EachGannFan extends Component {
 		const { fontFamily, fontSize, fontFill } = appearance;
 		const { hoverText, selected } = this.props;
 		const { onDragComplete } = this.props;
+		const { onClick } = this.props;
 		const { hover } = this.state;
 		const { enable: hoverTextEnabled, ...restHoverTextProps } = hoverText;
 
@@ -238,6 +239,7 @@ class EachGannFan extends Component {
 					onDragStart={this.handleDragStart}
 					onDrag={this.handleFanDrag}
 					onDragComplete={onDragComplete}
+                                        onClick={onClick}
 				/>
 				{line1Edge}
 				<HoverTextNearMouse
@@ -275,6 +277,7 @@ EachGannFan.propTypes = {
 	index: PropTypes.number,
 	onDrag: PropTypes.func.isRequired,
 	onDragComplete: PropTypes.func.isRequired,
+	onClick: PropTypes.func,
 };
 
 EachGannFan.defaultProps = {
