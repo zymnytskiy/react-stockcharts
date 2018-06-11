@@ -34,6 +34,7 @@ const DOCUMENTATION = {
 const CHART_FEATURES = {
 	head: "Chart features",
 	pages: [
+		// require("./lib/page/AxisPage").default,
 		require("./lib/page/MousePointerPage").default,
 		require("./lib/page/ZoomAndPanPage").default,
 		require("./lib/page/IntraDayContinuousDataPage").default,
@@ -105,7 +106,7 @@ const INTERACTIVE = {
 		require("./lib/page/StandardDeviationChannelPage").default,
 		require("./lib/page/GannFanPage").default,
 		require("./lib/page/TextPage").default,
-		require("./lib/page/InteractiveAlertPage").default,
+		require("./lib/page/InteractiveYCoordinatePage").default,
 		require("./lib/page/ClickHandlerCallbackPage").default,
 		require("./lib/page/BrushSupportPage").default,
 	]
