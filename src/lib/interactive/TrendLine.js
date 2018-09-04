@@ -150,6 +150,11 @@ class TrendLine extends Component {
 					? { ...appearance, ...each.appearance }
 					: appearance;
 
+				const hoverTextWithDefault = {
+					...TrendLine.defaultProps.hoverText,
+					...hoverText
+				};
+
 				return <EachTrendLine key={idx}
 					ref={this.saveNodeType(idx)}
 					index={idx}
@@ -167,7 +172,7 @@ class TrendLine extends Component {
 					edgeFill={eachAppearance.edgeFill}
 					edgeStrokeWidth={eachAppearance.edgeStrokeWidth}
 					r={eachAppearance.r}
-					hoverText={hoverText}
+					hoverText={hoverTextWithDefault}
 					onDrag={this.handleDragLine}
 					onDragComplete={this.handleDragLineComplete}
                                         onClick={onClick && (() => onClick(each, idx))}
@@ -245,9 +250,10 @@ TrendLine.defaultProps = {
 	hoverText: {
 		...HoverTextNearMouse.defaultProps,
 		enable: true,
-		bgHeight: 18,
-		bgWidth: 120,
+		bgHeight: "auto",
+		bgWidth: "auto",
 		text: "Click to select object",
+		selectedText: "",
 	},
 	trends: [],
 

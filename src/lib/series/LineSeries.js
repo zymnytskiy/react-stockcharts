@@ -166,9 +166,9 @@ class LineSeries extends Component {
 
 			onClickWhenHover={this.props.onClick}
 			onDoubleClickWhenHover={this.props.onDoubleClick}
-            onContextMenuWhenHover={this.props.onContextMenu}
-            onHover={this.props.onHover}
-            onUnHover={this.props.onUnHover}
+			onContextMenuWhenHover={this.props.onContextMenu}
+			onHover={this.props.onHover}
+			onUnHover={this.props.onUnHover}
 			{...hoverProps}
 		/>;
 	}
@@ -202,6 +202,8 @@ LineSeries.propTypes = {
 	highlightOnHover: PropTypes.bool,
 	onClick: PropTypes.func,
 	onDoubleClick: PropTypes.func,
+	onHover: PropTypes.func,
+	onUnHover: PropTypes.func,
 	onContextMenu: PropTypes.func,
 	yAccessor: PropTypes.func,
 	connectNulls: PropTypes.bool,

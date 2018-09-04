@@ -127,21 +127,35 @@ class StandardDeviationChannel extends Component {
                 const { onClick } = this.props
 		const { current, override } = this.state;
 
+		const eachDefaultAppearance = {
+			...StandardDeviationChannel.defaultProps.appearance,
+			...appearance
+		};
+
+		const hoverTextDefault = {
+			...StandardDeviationChannel.defaultProps.hoverText,
+			...hoverText
+		};
+
 		const tempLine = isDefined(current) && isDefined(current.end)
 			? <EachLinearRegressionChannel
 				interactive={false}
 				x1Value={current.start[0]}
 				x2Value={current.end[0]}
-				appearance={appearance}
-				hoverText={hoverText}
+				appearance={eachDefaultAppearance}
+				hoverText={hoverTextDefault}
 			/>
 			: null;
 
 		return <g>
 			{channels.map((each, idx) => {
 				const eachAppearance = isDefined(each.appearance)
-					? { ...appearance, ...each.appearance }
-					: appearance;
+					? { ...eachDefaultAppearance, ...each.appearance }
+					: eachDefaultAppearance;
+
+				const eachHoverText = isDefined(each.hoverText)
+					? { ...hoverTextDefault, ...each.hoverText }
+					: hoverTextDefault;
 
 				return <EachLinearRegressionChannel key={idx}
 					ref={this.saveNodeType(idx)}
@@ -153,7 +167,7 @@ class StandardDeviationChannel extends Component {
 
 					appearance={eachAppearance}
 					snapTo={snapTo}
-					hoverText={hoverText}
+					hoverText={eachHoverText}
 
 					onDrag={this.handleDragLine}
 					onDragComplete={this.handleDragLineComplete}
@@ -180,9 +194,9 @@ class StandardDeviationChannel extends Component {
 
 StandardDeviationChannel.propTypes = {
 	enabled: PropTypes.bool.isRequired,
-	snapTo: PropTypes.func.isRequired,
+	snapTo: PropTypes.func,
 
-	onStart: PropTypes.func.isRequired,
+	onStart: PropTypes.func,
 	onComplete: PropTypes.func.isRequired,
 	onSelect: PropTypes.func,
         onClick: PropTypes.func,
@@ -193,18 +207,18 @@ StandardDeviationChannel.propTypes = {
 	currentPositionRadius: PropTypes.number,
 
 	appearance: PropTypes.shape({
-		stroke: PropTypes.string.isRequired,
-		strokeOpacity: PropTypes.number.isRequired,
-		strokeWidth: PropTypes.number.isRequired,
-		fill: PropTypes.string.isRequired,
-		fillOpacity: PropTypes.number.isRequired,
-		edgeStrokeWidth: PropTypes.number.isRequired,
-		edgeStroke: PropTypes.string.isRequired,
-		edgeFill: PropTypes.string.isRequired,
-		r: PropTypes.number.isRequired,
+		stroke: PropTypes.string,
+		strokeOpacity: PropTypes.number,
+		strokeWidth: PropTypes.number,
+		fill: PropTypes.string,
+		fillOpacity: PropTypes.number,
+		edgeStrokeWidth: PropTypes.number,
+		edgeStroke: PropTypes.string,
+		edgeFill: PropTypes.string,
+		r: PropTypes.number,
 	}).isRequired,
 
-	hoverText: PropTypes.object.isRequired,
+	hoverText: PropTypes.object,
 	channels: PropTypes.array.isRequired,
 };
 
@@ -234,9 +248,10 @@ StandardDeviationChannel.defaultProps = {
 	hoverText: {
 		...HoverTextNearMouse.defaultProps,
 		enable: true,
-		bgHeight: 18,
-		bgWidth: 175,
+		bgHeight: "auto",
+		bgWidth: "auto",
 		text: "Click and drag the edge circles",
+		selectedText: ""
 	},
 	channels: [],
 };
