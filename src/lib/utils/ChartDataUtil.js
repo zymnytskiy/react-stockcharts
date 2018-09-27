@@ -224,7 +224,7 @@ export function getChartConfigWithUpdatedYScales(
 
 	const updatedChartConfig = combine(chartConfig, yDomains);
 	// console.error(yDomains, dy, chartsToPan, updatedChartConfig.map(d => d.yScale.domain()));
-	// console.log(updatedChartConfig.map(d => ({ id: d.id, domain: d.yScale.domain() })))
+        // console.log(updatedChartConfig.map(d => ({ id: d.id, domain: d.yScale.domain() })))
 
 	return updatedChartConfig;
 }

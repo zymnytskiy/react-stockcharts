@@ -98,7 +98,7 @@ class InteractiveText extends Component {
 		const { selected, interactiveCursorClass } = this.props;
 		const { onHover, onUnHover } = this.props;
 		const { onDragStart, onDrag, onDragComplete } = this.props;
-                const { onClick } = this.props
+		const { onClick } = this.props;
 
 		return <GenericChartComponent
 			isHover={this.isHover}
@@ -115,7 +115,7 @@ class InteractiveText extends Component {
 			onDragComplete={onDragComplete}
 			onHover={onHover}
 			onUnHover={onUnHover}
-                        onClickWhenHover={() => console.log('onclick') || onClick()}
+			onClickWhenHover={() => console.log("onclick") || onClick()}
 
 			drawOn={["mousemove", "mouseleave", "pan", "drag"]}
 		/>;

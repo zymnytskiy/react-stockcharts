@@ -150,7 +150,7 @@ class EachTrendLine extends Component {
 			selected,
 
 			onDragComplete,
-                        onClick,
+			onClick,
 		} = this.props;
 
 		const {
@@ -178,7 +178,7 @@ class EachTrendLine extends Component {
 				strokeOpacity={strokeOpacity}
 				strokeDasharray={strokeDasharray}
 				interactiveCursorClass={lineInteractiveCursor}
-                                onClick={onClick}
+				onClick={onClick}
 				onDragStart={this.handleLineDragStart}
 				onDrag={this.handleLineDrag}
 				onDragComplete={onDragComplete} />

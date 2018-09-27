@@ -142,7 +142,7 @@ class EquidistantChannel extends Component {
 		const { currentPositionRadius, currentPositionStroke } = this.props;
 		const { currentPositionOpacity, currentPositionStrokeWidth } = this.props;
 		const { channels, hoverText } = this.props;
-                const { onClick } = this.props
+		const { onClick } = this.props;
 		const { current, override } = this.state;
 		const overrideIndex = isDefined(override) ? override.index : null;
 
@@ -169,7 +169,7 @@ class EquidistantChannel extends Component {
 					appearance={eachAppearance}
 					onDrag={this.handleDragChannel}
 					onDragComplete={this.handleDragChannelComplete}
-                                        onClick={onClick && (() => onClick(each, idx))}
+					onClick={onClick && (() => onClick(each, idx))}
 				/>;
 			})}
 			{tempChannel}

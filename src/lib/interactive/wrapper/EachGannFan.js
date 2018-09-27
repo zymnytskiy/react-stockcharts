@@ -239,7 +239,7 @@ class EachGannFan extends Component {
 					onDragStart={this.handleDragStart}
 					onDrag={this.handleFanDrag}
 					onDragComplete={onDragComplete}
-                                        onClick={onClick}
+					onClick={onClick}
 				/>
 				{line1Edge}
 				<HoverTextNearMouse

@@ -6,7 +6,7 @@ import GenericComponent from "../GenericComponent";
 import { sum } from "d3-array";
 
 import { first, last, isNotDefined, isDefined, hexToRGBA } from "../utils";
-import displayValuesFor from './displayValuesFor'
+import displayValuesFor from "./displayValuesFor";
 
 class HoverTooltip extends Component {
 	constructor(props) {
@@ -24,7 +24,7 @@ class HoverTooltip extends Component {
 	render() {
 		return <GenericComponent
 			svgDraw={this.renderSVG}
-                        canvasDraw={this.drawOnCanvas}
+			canvasDraw={this.drawOnCanvas}
 			drawOn={["mousemove", "pan"/* , "mouseleave" */]}
 		/>;
 	}
@@ -76,7 +76,7 @@ HoverTooltip.propTypes = {
 	]).isRequired,
 	fontFamily: PropTypes.string,
 	fontSize: PropTypes.number,
-        displayValuesFor: PropTypes.func.isRequired,
+	displayValuesFor: PropTypes.func.isRequired,
 };
 
 HoverTooltip.contextTypes = {
@@ -100,7 +100,7 @@ HoverTooltip.defaultProps = {
 	backgroundShapeCanvas: backgroundShapeCanvas,
 	fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
 	fontSize: 12,
-        displayValuesFor,
+	displayValuesFor,
 };
 
 const PADDING = 5;
@@ -270,7 +270,7 @@ function helper(props, moreProps, ctx) {
 	const { origin, tooltipContent } = props;
 	const { xAccessor, displayXAccessor } = moreProps;
 
-        const currentItem = props.displayValuesFor(props, moreProps)
+	const currentItem = props.displayValuesFor(props, moreProps);
 
 	if (!show || isNotDefined(currentItem)) return;
 

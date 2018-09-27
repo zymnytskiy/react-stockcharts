@@ -231,7 +231,7 @@ class EachFibRetracement extends Component {
 							onDragStart={this.handleLineDragStart}
 							onDrag={dragHandler}
 							onDragComplete={onDragComplete}
-                                                        onClick={this.props.onClick}
+							onClick={this.props.onClick}
 						/>
 						<Text
 							selected={selected}

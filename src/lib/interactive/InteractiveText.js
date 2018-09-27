@@ -102,7 +102,7 @@ class InteractiveText extends Component {
 	}
 	render() {
 		const { textList, defaultText, hoverText } = this.props;
-                const { onClick } = this.props
+		const { onClick } = this.props;
 		const { override } = this.state;
 		return <g>
 			{textList.map((each, idx) => {
@@ -125,7 +125,7 @@ class InteractiveText extends Component {
 
 					onDrag={this.handleDrag}
 					onDragComplete={this.handleDragComplete}
-                                        onClick={onClick && (() => onClick(each, idx))}
+					onClick={onClick && (() => onClick(each, idx))}
 					edgeInteractiveCursor="react-stockcharts-move-cursor"
 				/>;
 			})}

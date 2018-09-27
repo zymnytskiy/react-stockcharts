@@ -111,7 +111,7 @@ class GannFan extends Component {
 		const { currentPositionRadius, currentPositionStroke } = this.props;
 		const { currentPositionOpacity, currentPositionStrokeWidth } = this.props;
 		const { hoverText, fans } = this.props;
-                const { onClick } = this.props
+		const { onClick } = this.props;
 		const { current, override } = this.state;
 		const overrideIndex = isDefined(override) ? override.index : null;
 
@@ -139,7 +139,7 @@ class GannFan extends Component {
 					hoverText={hoverText}
 					onDrag={this.handleDragFan}
 					onDragComplete={this.handleDragFanComplete}
-                                        onClick={onClick && (() => onClick(each, idx))}
+					onClick={onClick && (() => onClick(each, idx))}
 				/>;
 			})}
 			{tempChannel}

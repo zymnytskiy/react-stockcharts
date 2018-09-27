@@ -138,7 +138,7 @@ class ChannelWithArea extends Component {
 	render() {
 		const { selected, interactiveCursorClass } = this.props;
 		const { onDragStart, onDrag, onDragComplete, onHover, onUnHover } = this.props;
-                const { onClick } = this.props
+		const { onClick } = this.props;
 
 		return <GenericChartComponent
 			isHover={this.isHover}
@@ -155,7 +155,7 @@ class ChannelWithArea extends Component {
 			onDragComplete={onDragComplete}
 			onHover={onHover}
 			onUnHover={onUnHover}
-                        onClickWhenHover={onClick}
+			onClickWhenHover={onClick}
 
 			drawOn={["mousemove", "mouseleave", "pan", "drag"]}
 		/>;

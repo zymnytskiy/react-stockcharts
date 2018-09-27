@@ -87,7 +87,7 @@ class EachLinearRegressionChannel extends Component {
 			edgeStroke,
 		} = appearance;
 		const { hover } = this.state;
-                const { onClick } = this.props;
+		const { onClick } = this.props;
 
 		const hoverHandler = interactive
 			? { onHover: this.handleHover, onUnHover: this.handleHover }
@@ -106,7 +106,7 @@ class EachLinearRegressionChannel extends Component {
 				selected={selected || hover}
 				{...hoverHandler}
 
-                                onClick={onClick}
+				onClick={onClick}
 				x1Value={x1Value}
 				x2Value={x2Value}
 				fill={fill}

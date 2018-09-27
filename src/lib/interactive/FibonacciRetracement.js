@@ -158,7 +158,7 @@ class FibonacciRetracement extends Component {
 	render() {
 		const { current, override } = this.state;
 		const { retracements } = this.props;
-                const { onClick } = this.props;
+		const { onClick } = this.props;
 
 		const {
 			appearance,
@@ -210,7 +210,7 @@ class FibonacciRetracement extends Component {
 							appearance={eachAppearance}
 							onDrag={this.handleDrag}
 							onDragComplete={this.handleDragComplete}
-                                                        onClick={onClick && (() => onClick(each, idx))}
+							onClick={onClick && (() => onClick(each, idx))}
 						/>
 					);
 				})}
